@@ -2,10 +2,13 @@
   "name": "pse10-frontend",
   "version": "1.0.0",
   "description": "Static frontend for Peer Tutoring System",
-  "main": "index.html",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
