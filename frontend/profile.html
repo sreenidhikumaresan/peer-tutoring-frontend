@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+  <!-- keep same stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  <!-- include font to match original look if not already loaded -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body onload="loadProfile()">
+<div class="container">
+  <div class="profile-pic"></div>
+  <h3 id="profileName"></h3>
+  <p id="profileNumber"></p>
+
+
+
+  <!-- dynamic counts (only values change) -->
+  <p><strong>Active Learning Requests:</strong> <span id="activeLearningCount">0</span></p>
+  <p style="display:none;"><strong>Active Tutor Offers:</strong> <span id="activeTutorCount">0</span></p>
+
+  <!-- LIST SECTIONS (kept inside the same .container so CSS applies) -->
+  <div id="learnSection" style="display:none; margin-top: 1rem;">
+    <h4 style="margin-bottom: 0.5rem;">Courses I Want to Learn</h4>
+    <ul id="learnRequestsList" style="list-style: decimal inside;"></ul>
+  </div>
+
+  <div id="tutorSection" style="display:none; margin-top: 1rem;">
+    <h4 style="margin-bottom: 0.5rem;">Courses I Can Tutor</h4>
+    <ul id="tutorOffersList" style="list-style: decimal inside;"></ul>
+  </div>
+
+  <button onclick="window.location.href='menu.html'">Back</button>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
+
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body onload="loadProfile()">
+<div class="container">
+  <div class="profile-pic"></div>
+  <h3 id="profileName"></h3>
+  <p id="profileNumber"></p>
+  <p><strong>Tutor Points:</strong> 10</p>
+  <p><strong>Active Learning Requests:</strong> 2</p>
+  <button onclick="window.location.href='menu.html'">Back</button>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
