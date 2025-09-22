@@ -24,6 +24,28 @@ function login() {
   }
 }
 
+function signup() {
+  const name = document.getElementById("name-signup").value.trim();
+  const username = document.getElementById("username-signup").value.trim();
+  const password = document.getElementById("password-signup").value.trim();
+  const mobile = document.getElementById("number-signup").value.trim();
+
+  if (!name || !username || !password || !mobile) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  // Create user object
+  const user = { name, username, password, mobile };
+
+  // Save to localStorage (you can store multiple users if needed later)
+  localStorage.setItem("user", JSON.stringify(user));
+
+  alert("New user account created!");
+  window.location.href = "index.html"; // redirect back to login
+}
+
+
 function logout() {
   // keep requests persistent; only remove user identity
   localStorage.removeItem('userName');
@@ -47,12 +69,15 @@ function autoFillTutorForm() {
 function submitLearn() {
   const topicEl = document.getElementById('learnTopic');
   const fileEl = document.getElementById('learnFile');
+   const intervalEl = document.getElementById('learnInterval');
+
 
   const topic = topicEl ? topicEl.value.trim() : '';
   const filename = (fileEl && fileEl.files && fileEl.files.length) ? fileEl.files[0].name : '';
+  const interval = intervalEl ? intervalEl.value : '';
 
-  if (!topic || !filename) {
-    alert('Please enter a topic and choose a file.');
+  if (!topic || !filename || !interval) {
+    alert('Please enter a topic and choose a file,and select a preferred interval');
     return;
   }
 
@@ -60,6 +85,7 @@ function submitLearn() {
   learnRequests.push({
     topic: topic,
     fileName: filename,
+    interval:interval,
     submittedAt: new Date().toISOString()
   });
   localStorage.setItem('learnRequests', JSON.stringify(learnRequests));
@@ -78,14 +104,14 @@ function submitLearn() {
    ----------------------- */
 function submitTutor() {
   const nameEl = document.getElementById('tutorName');
-  const numberEl = document.getElementById('tutorNumber');
+  const dateEl = document.getElementById('tutorDate');
   const timeEl = document.getElementById('tutorTime');
 
   const name = nameEl ? nameEl.value.trim() : '';
-  const number = numberEl ? numberEl.value.trim() : '';
-  const time = timeEl ? timeEl.value.trim() : '';
+  const date = dateEl ? dateEl.value : '';
+  const time = timeEl ? timeEl.value : '';
 
-  if (!name || !number || !time) {
+  if (!name || !date || !time) {
     alert('Please fill Name, Number and Schedule & Timing.');
     return;
   }
@@ -93,8 +119,8 @@ function submitTutor() {
   const tutorOffers = JSON.parse(localStorage.getItem('tutorOffers')) || [];
   tutorOffers.push({
     name: name,
-    number: number,
-    schedule: time,
+    date: date,
+    time: time,
     submittedAt: new Date().toISOString()
   });
   localStorage.setItem('tutorOffers', JSON.stringify(tutorOffers));
@@ -139,7 +165,7 @@ function loadProfile() {
     learnRequests.forEach((req, idx) => {
       const li = document.createElement('li');
       // show topic + file name + optional time
-      li.innerText = `${idx+1}. ${req.topic} — ${req.fileName}`;
+      li.innerText = ` ${req.topic} — ${req.fileName} — ${req.interval}`;
       learnList.appendChild(li);
     });
   }
@@ -148,7 +174,7 @@ function loadProfile() {
     tutorList.innerHTML = '';
     tutorOffers.forEach((offer, idx) => {
       const li = document.createElement('li');
-      li.innerText = `${idx+1}. ${offer.name} — ${offer.number} — ${offer.schedule}`;
+      li.innerText = ` ${offer.name} — ${offer.date} — ${offer.time}`;
       tutorList.appendChild(li);
     });
   }

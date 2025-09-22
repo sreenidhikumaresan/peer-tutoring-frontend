@@ -9,6 +9,23 @@ body {
   min-height: 100vh;
   display: flex; justify-content: center; align-items: center;
 }
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;   /* white background */
+  color: #000;              /* black text */
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Style the options inside dropdown */
+select option {
+  background-color: #fff;   /* white background */
+  color: #000;              /* black text */
+}
 .container {
   background: rgba(255,255,255,0.1);
   padding: 2rem;
@@ -61,3 +78,5 @@ button:hover { background: #ff6f00; }
   transition: 0.3s;
 }
 .card:hover { background: rgba(255,255,255,0.3); }
+
+
