@@ -28,13 +28,12 @@ jobs:
           npm install
           npm run build --if-present
           npm run test --if-present
-           working-directory: ./frontend  # <-- THIS IS THE LINE YOU ARE ADDING
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: ./frontend # <-- UPDATE THIS PATH AS WELL
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
@@ -52,9 +51,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_6BCD8BD40C19402EBFFCA5F00EF6DEB9 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_E2FC6FFBCACA4011B769CE69FC775DF6 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_294D0E5A581245BF8BFA9081A9E9CDA1 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_47AA20ECC4E74672BB17634FC2AE4CA0 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_9644A00F044F4854B0D12036F46ECF31 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A3BBBF083C33423CB9E6F9FA53FB92DC }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
@@ -63,6 +62,4 @@ jobs:
           app-name: 'pse10-frontend-site'
           slot-name: 'Production'
           package: .
-
           
-
